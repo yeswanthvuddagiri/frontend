@@ -34,13 +34,6 @@ function App() {
 
   if (loading) return <div>Loading...</div>;
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setIsAuthenticated(false);
-    setRedirectToLogin(true);
-    toast.success("Logged out");
-  };
-
   if (redirectToLogin) {
     setRedirectToLogin(false);
     return <Navigate to="/login" />;
