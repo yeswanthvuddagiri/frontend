@@ -20,7 +20,7 @@ const navigate = useNavigate();
 
     const fetchHistory = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/history/${user.email}`);
+        const res = await axios.get(`https://backend-sc0x.onrender.com/history/${user.email}`);
         setHistory(res.data.history || []);
         console.log("Fetched history:", res.data.history);
       } catch (err) {
