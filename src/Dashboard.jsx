@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom"; // for redirecting after logout
 const Dashboard = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const navigate = useNavigate();
+// eslint-disable-next-line no-unused-vars
+const navigate = useNavigate();
 
   // Fetch user history
   useEffect(() => {
