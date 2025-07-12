@@ -18,7 +18,7 @@ const Signup = ({ onSignup }) => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/signup", {
+      const res = await fetch("https://backend-sc0x.onrender.com/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, createpassword }),
