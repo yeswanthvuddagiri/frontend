@@ -56,12 +56,39 @@ function App() {
   </div>
 
   <ul className="nav-links">
-   <li><Link to="/dashboard">Dashboard</Link></li>
-    <li><Link to="/career">Career</Link></li>
-    <li><Link to="/chat">Chat</Link></li>
-    <li><Link to="/login">Login</Link></li>
-    <li><Link to="/signup">Signup</Link></li>
-  </ul>
+  {isAuthenticated ? (
+    <>
+      <li><Link to="/dashboard">Dashboard</Link></li>
+      <li><Link to="/career">Career</Link></li>
+      <li><Link to="/chat">Chat</Link></li>
+      <li>
+        <button
+          onClick={() => {
+            localStorage.removeItem("user");
+            setIsAuthenticated(false);
+            setRedirectToLogin(true);
+          }}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'white',
+            cursor: 'pointer',
+            fontSize: '1rem',
+            padding: '0',
+          }}
+        >
+          Logout
+        </button>
+      </li>
+    </>
+  ) : (
+    <>
+      <li><Link to="/login">Login</Link></li>
+      <li><Link to="/signup">Signup</Link></li>
+    </>
+  )}
+</ul>
+
 </div>
         <Routes>
           <Route
