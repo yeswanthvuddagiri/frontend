@@ -61,25 +61,7 @@ function App() {
       <li><Link to="/dashboard">Dashboard</Link></li>
       <li><Link to="/career">Career</Link></li>
       <li><Link to="/chat">Chat</Link></li>
-      <li>
-        <button
-          onClick={() => {
-            localStorage.removeItem("user");
-            setIsAuthenticated(false);
-            setRedirectToLogin(true);
-          }}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'white',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            padding: '0',
-          }}
-        >
-          Logout
-        </button>
-      </li>
+     
     </>
   ) : (
     <>
