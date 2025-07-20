@@ -56,11 +56,11 @@ function App() {
   </div>
 
   <ul className="nav-links">
-    <li><a href="/dashboard">Dashboard</a></li>
-    <li><a href="/career">Career</a></li>
-    <li><a href="/chat">Chat</a></li>
-    <li><a href="/login">Login</a></li>
-    <li><a href="/signup">Signup</a></li>
+   <li><Link to="/dashboard">Dashboard</Link></li>
+    <li><Link to="/career">Career</Link></li>
+    <li><Link to="/chat">Chat</Link></li>
+    <li><Link to="/login">Login</Link></li>
+    <li><Link to="/signup">Signup</Link></li>
   </ul>
 </div>
         <Routes>
