@@ -42,24 +42,27 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        <nav className="navbar">
-  <button className="nav-toggle" onClick={() => {
-    const menu = document.querySelector('.nav-menu');
+        
+ <div className="navbar">
+  <div className="logo">CareerAssistant</div>
+
+  <div className="menu-icon" onClick={() => {
+    const menu = document.querySelector('.nav-links');
     menu.classList.toggle('show');
   }}>
-    ☰
-  </button>
-
-  <div className="nav-menu">
-    {isAuthenticated && <Link className="nav-link" to="/dashboard">Dashboard</Link>}
-    <Link className="nav-link" to="/Career">Career Assistant</Link>
-    <Link className="nav-link" to="/Chat">Chat</Link>
-    {!isAuthenticated && <Link className="nav-link" to="/login">Login</Link>}
-    {!isAuthenticated && <Link className="nav-link" to="/signup">Signup</Link>}
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
-</nav>
 
-
+  <ul className="nav-links">
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/career">Career</a></li>
+    <li><a href="/chat">Chat</a></li>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Signup</a></li>
+  </ul>
+</div>
         <Routes>
           <Route
             path="/"
