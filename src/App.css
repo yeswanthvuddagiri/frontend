@@ -4,12 +4,21 @@ html, body, #root {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background-image: url('./im.jpg'); /* Move back.jpg to public folder */
+  background-image: url('./im.jpg'); /* Move image to public for consistency if needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: #f0f0f0; /* Fallback color */
+  background-color: #f0f0f0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* App Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Container Styling */
@@ -35,6 +44,7 @@ h1 {
 label {
   font-weight: 600;
   color: #1d79d4;
+  font-size: 1.1rem;
 }
 
 /* Textareas */
@@ -86,11 +96,7 @@ button:hover {
   max-height: 400px;
   overflow-y: auto;
   animation: fadeIn 0.6s ease-in-out;
-}
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  font-size: 1.05rem;
 }
 
 /* Fade-in Animation */
@@ -108,16 +114,38 @@ button:hover {
 /* Responsive Design */
 @media (max-width: 600px) {
   .container {
-    margin: 2rem 1rem;
+    width: 90%;
+    margin: 2rem auto;
     padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-size: 1rem;
   }
 
   textarea {
     font-size: 0.95rem;
+    padding: 10px;
   }
 
   button {
     width: 100%;
     font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .recommendations {
+    font-size: 0.95rem;
+    padding: 1rem;
+    max-height: 300px;
+  }
+
+  body {
+    background-attachment: scroll;
+    background-position: top;
   }
 }
