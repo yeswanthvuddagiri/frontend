@@ -1,4 +1,4 @@
-/* Fixed Top Navbar */
+/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -14,28 +14,27 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Logo styling */
 .logo {
   font-size: 1.5rem;
-  color: white;
   font-weight: bold;
+  color: white;
+  text-decoration: none;
 }
 
-/* Desktop nav links */
+/* Nav links */
 .nav-links {
   display: flex;
-  list-style: none;
   gap: 1.5rem;
+  list-style: none;
 }
 
-/* Link style */
 .nav-links li a {
   color: white;
   text-decoration: none;
   font-weight: 500;
 }
 
-/* Hamburger icon - hidden on desktop */
+/* Hamburger menu */
 .menu-icon {
   display: none;
   flex-direction: column;
@@ -47,10 +46,9 @@
   width: 25px;
   height: 3px;
   background-color: white;
-  transition: all 0.3s ease;
 }
 
-/* Mobile view adjustments */
+/* Responsive Styles */
 @media screen and (max-width: 768px) {
   .menu-icon {
     display: flex;
@@ -58,8 +56,8 @@
 
   .nav-links {
     position: absolute;
-    top: 100%; /* appear below navbar */
-    left: 0;
+    top: 60px;
+    right: 0;
     width: 100%;
     background-color: #1d1d2e;
     flex-direction: column;
@@ -73,11 +71,6 @@
   }
 
   .nav-links li {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
-}
-
-/* Prevent content from hiding behind fixed navbar */
-body {
-  padding-top: 80px;
 }
