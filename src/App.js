@@ -4,9 +4,10 @@ import {
   Routes,
   Route,
   Link,
-  Navigate
+  Navigate,
+  useLocation
 } from 'react-router-dom';
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
@@ -21,10 +22,20 @@ import ResetPassword from './ResetPassword';
 import Dashboard from './Dashboard';
 import Footer from './Footer';
 
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [redirectToLogin, setRedirectToLogin] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -32,104 +43,96 @@ function App() {
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    // Close mobile menu on route change
+    setMenuOpen(false);
+  }, [location]);
+
   if (loading) return <div>Loading...</div>;
 
-  if (redirectToLogin) {
-    setRedirectToLogin(false);
-    return <Navigate to="/login" />;
-  }
-
   return (
-    <Router>
-      <div className="app-container">
-        
- <div className="navbar">
-  <div className="logo">CareerAssistant</div>
+    <div className="app-container">
 
-  <div className="menu-icon" onClick={() => {
-    const menu = document.querySelector('.nav-links');
-    menu.classList.toggle('show');
-  }}>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+      {/* Navbar */}
+      <div className="navbar">
+        <div className="logo">CareerAssistant</div>
 
-  <ul className="nav-links">
-  {isAuthenticated ? (
-    <>
-      <li><Link to="/dashboard">Dashboard</Link></li>
-      <li><Link to="/career">Career</Link></li>
-      <li><Link to="/chat">Chat</Link></li>
-     
-    </>
-  ) : (
-    <>
-      <li><Link to="/login">Login</Link></li>
-      <li><Link to="/signup">Signup</Link></li>
-    </>
-  )}
-</ul>
+        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
 
-</div>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              isAuthenticated ? (
-                <Navigate to="/dashboard" />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              isAuthenticated ? (
-                <Dashboard setIsAuthenticated={setIsAuthenticated} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route
-            path="/Career"
-            element={isAuthenticated ? <Career /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/Chat"
-            element={isAuthenticated ? <Chat /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/login"
-            element={
-              !isAuthenticated ? (
-                <Login onLogin={() => setIsAuthenticated(true)} />
-              ) : (
-                <Navigate to="/dashboard" />
-              )
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              !isAuthenticated ? (
-                <Signup onSignup={() => setIsAuthenticated(true)} />
-              ) : (
-                <Navigate to="/dashboard" />
-              )
-            }
-          />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
-        </Routes>
-
-        <Footer /> {/* ✅ Shown only once at the bottom */}
-        <ToastContainer />
+        <ul className={`nav-links ${menuOpen ? 'show' : ''}`}>
+          {isAuthenticated ? (
+            <>
+              <li><Link to="/dashboard">Dashboard</Link></li>
+              <li><Link to="/career">Career</Link></li>
+              <li><Link to="/chat">Chat</Link></li>
+            </>
+          ) : (
+            <>
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/signup">Signup</Link></li>
+            </>
+          )}
+        </ul>
       </div>
-    </Router>
+
+      {/* Routes */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            isAuthenticated ? (
+              <Dashboard setIsAuthenticated={setIsAuthenticated} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/career"
+          element={isAuthenticated ? <Career /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/chat"
+          element={isAuthenticated ? <Chat /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/login"
+          element={
+            !isAuthenticated ? (
+              <Login onLogin={() => setIsAuthenticated(true)} />
+            ) : (
+              <Navigate to="/dashboard" />
+            )
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            !isAuthenticated ? (
+              <Signup onSignup={() => setIsAuthenticated(true)} />
+            ) : (
+              <Navigate to="/dashboard" />
+            )
+          }
+        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+      </Routes>
+
+      <Footer />
+      <ToastContainer />
+    </div>
   );
 }
 
-export default App;
+export default AppWrapper;
