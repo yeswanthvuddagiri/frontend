@@ -74,3 +74,9 @@
     margin: 0.5rem 0;
   }
 }
+@media screen and (max-width: 768px) {
+  .your-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
