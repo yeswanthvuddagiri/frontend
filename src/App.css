@@ -149,3 +149,9 @@ button:hover {
     background-position: top;
   }
 }
+@media screen and (max-width: 768px) {
+  .your-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
