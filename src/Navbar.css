@@ -1,40 +1,18 @@
-/* GENERAL RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0d0d1a;
-  color: white;
-  padding-top: 80px; /* for fixed navbar */
-}
-
-/* NAVBAR */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #1d1d2e;
-  color: white;
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  background-color: #1d1d2e;
+  padding: 1rem 2rem;
+  position: relative;
 }
 
-/* LOGO */
 .logo {
   font-size: 1.5rem;
+  color: white;
   font-weight: bold;
 }
 
-/* NAV LINKS */
 .nav-links {
   display: flex;
   list-style: none;
@@ -42,12 +20,11 @@ body {
 }
 
 .nav-links li a {
-  text-decoration: none;
   color: white;
+  text-decoration: none;
   font-weight: 500;
 }
 
-/* HAMBURGER MENU ICON */
 .menu-icon {
   display: none;
   flex-direction: column;
@@ -58,16 +35,11 @@ body {
 .menu-icon div {
   width: 25px;
   height: 3px;
-  background: white;
+  background-color: white;
+  transition: all 0.3s ease;
 }
 
-/* HIDE CHECKBOX */
-#menu-toggle {
-  display: none;
-}
-
-/* RESPONSIVE NAVBAR */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .menu-icon {
     display: flex;
   }
@@ -75,16 +47,19 @@ body {
   .nav-links {
     position: absolute;
     top: 60px;
-    left: 0;
     right: 0;
+    width: 100%;
     background-color: #1d1d2e;
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 2rem;
+    align-items: center;
     display: none;
   }
 
-  #menu-toggle:checked + .menu-icon + .nav-links {
+  .nav-links.show {
     display: flex;
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
   }
 }
