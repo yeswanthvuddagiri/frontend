@@ -1,23 +1,25 @@
-/* Navbar Base */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: #1d1d2e;
-  color: #fff;
+  color: white;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 0;
-  width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+body {
+  padding-top: 80px; /* Prevent content from hiding behind fixed navbar */
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
-  text-decoration: none;
 }
 
 .nav-links {
@@ -43,31 +45,4 @@
   width: 25px;
   height: 3px;
   background: white;
-}
-
-/* Mobile View */
-@media screen and (max-width: 768px) {
-  .menu-icon {
-    display: flex;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background: #1d1d2e;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    display: none;
-    padding: 1rem 0;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links li {
-    margin: 1rem 0;
-  }
 }
